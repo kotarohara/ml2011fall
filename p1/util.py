@@ -34,7 +34,7 @@ def splitTrainTest(X0, Y0, freqTest):
 
   return (X,Y,Xte,Yte)
 
-
+# remove duplicates from seq and return a new list
 def uniq(seq, idfun=None): 
   # order preserving
   if idfun is None:
@@ -51,6 +51,7 @@ def uniq(seq, idfun=None):
     result.append(item)
   return result
 
+# return most frequently occuring item in seq
 def mode(seq):
   if len(seq) == 0:
     return 1.

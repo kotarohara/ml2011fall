@@ -10,4 +10,4 @@ def change4SpacesToTab( filename ):
 	return
 
 if __name__=="__main__":
-	change4SpacesToTab( "dumbClassifiers.py" )
+	change4SpacesToTab( "dt.py" )
