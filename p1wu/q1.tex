@@ -1,1 +1,2 @@
 \section*{WU1}
+By computing $mean( ( datasets.TennisData.Y > 0 ) == ( h.predictAll( datasets.TennisData.X ) > 0 ) )$, you are actually computing $\frac{1}{N}\sum_{k = 0}^{N-1}{[y_k = f(\vec x_k)]}$, which, by definition, is accuracy ( 1 - training error ).
