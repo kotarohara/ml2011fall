@@ -5,6 +5,8 @@ The testing error could go down even after you increase the number of examples. 
 
 \section*{WU3}
 
+Please refer to the figure \ref{fig:dt_examples}.
+
 The training accuracy is guaranteed to monotonically increase, because it is table-look-up, except for the case which at every node on DT the probability of going right or left is 50-50. This will never increase the accuracy, but it is very unlikely to happen. 
 
 The testing accuracy could oscillate like on the figure, but not guaranteed. As questions asked at DT nodes go up, the model tends to overfit. This could either increase or decrease in accuracy. However, in the end the accuracy goes down overall.
