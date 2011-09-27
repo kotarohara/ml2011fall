@@ -46,11 +46,20 @@ class Perceptron(BinaryClassifier):
         """
         return True
 
+    def getWeights(self):
+        return self.weights
+
     def __repr__(self):
         """
         Return a string representation of the tree
         """
         return    "w=" + repr(self.weights)   +  ", b=" + repr(self.bias)
+    
+    def __weights__(self, n):
+        """
+        Return a string representation of the tree
+        """
+        print self.weights[n]
 
     def predict(self, X):
         """
@@ -77,9 +86,9 @@ class Perceptron(BinaryClassifier):
             self.numUpd  = self.numUpd  + 1
 
             # perform an update
-            self.weights = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            self.weights += Y*X
 
-            self.bias    = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            self.bias    += Y
 
 
     def nextIteration(self):

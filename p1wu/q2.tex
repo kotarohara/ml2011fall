@@ -1,19 +1,18 @@
 \section*{WU2}
+Please refer to the figure \ref{fig:dt_examples}.
+
 The training accuracy goes down after increasing number of examples. This is because there would be more ambiguity, meaning there would be examples with different lables with same feature values at non-leaf nodes where the DT makes a decision.
 
 The testing error could go down even after you increase the number of examples. This is because the features that are considered important on training phase can vary as the number of examples changes. Let's say, when there are 50 examples, a feature $x_{a1}$ is considered more dominant than the other features. However, as the number of examples increases, say 100, another feature $x_{a2}$ may be considered more influential than $x_{a1}$. This may be right or wrong on the test data. If it is right on test data, the test accuracy goes up, and vice versa.
 
 \section*{WU3}
-
-Please refer to the figure \ref{fig:dt_examples}.
+Please refer to the figure \ref{fig:dt_depth}.
 
 The training accuracy is guaranteed to monotonically increase, because it is table-look-up, except for the case which at every node on DT the probability of going right or left is 50-50. This will never increase the accuracy, but it is very unlikely to happen. 
 
-The testing accuracy could oscillate like on the figure, but not guaranteed. As questions asked at DT nodes go up, the model tends to overfit. This could either increase or decrease in accuracy. However, in the end the accuracy goes down overall.
+The testing accuracy could oscillate like on the figure, because increase in the number of questions asked on DT could either increase or decrease in accuracy on test phase. However, the accuracy goes down overall at the end because of overfitting.
 
 \section*{WU4}
-
-Please refer to the figure \ref{fig:dt_depth}.
   \begin{verbatim}
 -introduction to low-level programming concepts [212]
    - program analysis and understanding [631]
@@ -31,7 +30,8 @@ Please refer to the figure \ref{fig:dt_depth}.
        - Leaf 1.0
        - Leaf 1.0
   \end{verbatim}
-Intuitively, the course 212 is not a good feature because it is an introductory course because most students take that course. This means it should not be an important node at the top of the tree. However, there are a few informative questions as well. For example, computational geometry (754) sounds related to graphics, and  computational linguistics ii (773) is related to AI. So it makes sense that these questions are asked on the DT, i.e. *correlated* to the event that students take/not take AI or graphics. 
+Intuitively, the course 212 is not a good feature and should not be at the top of the DT, because it is an introductory course that most students take. 
 
-However, both 754 and 773 are advanced courses and should be taken after taking AI or graphics course. Since DT cannot take time data (which couses were taken before9 into account in training phase, it cannot explain the *causality*.
+There are a few intuitive informative questions as well. For example, computational geometry (754) sounds related to graphics, and computational linguistics ii (773) sounds related to AI. It is reasonable that students who have taken 754 or 773 have also taken either AI or graphics. So it makes sense that these questions are asked on the DT.
 
+However, both 754 and 773 are advance courses and should be taken \emph{after} taking AI or graphics course. Since DT cannot take temporal data (which courses were taken before) into account in training phase, it cannot explain the \emph{causality}. Which means, when DT is used to expect whether students would take AI or graphics, it is highly likely that we do not have features like 754 or 773.

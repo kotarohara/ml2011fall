@@ -1,14 +1,19 @@
 \section*{WU6}
+We got the best result afert 81 training iterations.
+Training accuracy 0.54, test accuracy 0.62
+
+
 The top and bottom five had weights with the same values so we extended the list from 5 to 7 for the positiv values.
 We did the same thing for the negative ones where we extended the list from 5 to 6.
 
 Below you can see the top and bottom weights and their corresponding classes.
 
+
 \begin{verbatim}
-advanced computer graphics
-8.0
 computer processing of pictorial information
 9.0
+advanced computer graphics
+8.0
 database management systems
 7.0
 computational methods
@@ -19,7 +24,6 @@ data structures
 5.0
 introduction to information technology
 5.0
-
 
 
 honors seminar
@@ -35,9 +39,20 @@ object-oriented programming ii
 computer networks
 -4.0
 \end{verbatim}
-
 There were two things that were interesting in these weights:
- - no other course from the AI area had a high or low weight associated with it.
- - there is a clustering of undergrad courses in the negative weights (introduction to c programmin, object-oriented programming i+ii)
+\begin{itemize}
+ \item the top two positiv weights are both advanced computer graphics courses. Which makes sense because they require the student to take the lower level
+ computer graphics course that we are looking for.
+ \item no course from AI area had a high or low weight associated with it. Which might explain the bad test results. For good results you would expect an AI class to show up in the positiv or negativ weights.
+\end{itemize}
 
-Besides that there seemed to be no reason for choosing these weights that we could think of. The positiv weights seem to be randomly drawn from the other categories (besides AI).
+Besides that there seemed to be no logical reason for choosing these classes that we could think of.
+
+Why is it hard to interpret "large weight" as "most indicative"?:
+       The perceptron is looking for patterns in the training data but it might find patterns that are not really meaningful for prediction. E.g. most of
+       the     negativ weights are introductory classes which doesn't really make sense when you want to predict if someone took a certain class because
+       everyone takes these classes.
+
+Comparison with Decision Tree:
+       Except for "program analysis and understanding" which is a question in the decision tree and a high negativ weight in the perceptron, there are
+       no other items that are overlapping.
