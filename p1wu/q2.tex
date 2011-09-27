@@ -31,5 +31,7 @@ Please refer to the figure \ref{fig:dt_depth}.
        - Leaf 1.0
        - Leaf 1.0
   \end{verbatim}
-I may be wrong and there may be correlation between taking CG and taking these courses, but the courses look fairly random to me. For example, course 212 is an introductory course and most students take that course. This means it should not be an important node at the top of the tree. This implies DT is not the best model for this problem.
+Intuitively, the course 212 is not a good feature because it is an introductory course because most students take that course. This means it should not be an important node at the top of the tree. However, there are a few informative questions as well. For example, computational geometry (754) sounds related to graphics, and  computational linguistics ii (773) is related to AI. So it makes sense that these questions are asked on the DT, i.e. *correlated* to the event that students take/not take AI or graphics. 
+
+However, both 754 and 773 are advanced courses and should be taken after taking AI or graphics course. Since DT cannot take time data (which couses were taken before9 into account in training phase, it cannot explain the *causality*.
 
