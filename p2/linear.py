@@ -48,7 +48,6 @@ class SquaredLoss(LossFunction):
 		vector Y; the predicted values are in Yhat; compute the
 		gradient of the loss associated with these predictions.
 		"""
-
 		return - sum((Y - Yhat) * X.T, axis=1)
 
 
@@ -169,12 +168,19 @@ class LinearClassifier(BinaryClassifier):
 		numIter  = self.opts['numIter']			  # how many iterations of gd to run
 		stepSize = self.opts['stepSize']			 # what should be our GD step size?
 
+		self.weights = zeros( 2 )
+		#pdb.set_trace()
 		# define our objective function based on loss, lambd and (X,Y)
 		def func(w):
 			# should compute obj = loss(w) + (lambd/2) * norm(w)^2
-			Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
-
-			obj  = util.raiseNotDefined()	### TODO: YOUR CODE HERE
+			# Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
+			#pdb.set_trace()
+			Yhat = dot(w, X.T ) #self.predict( X.T )	# Yhat for each example
+			
+			#logging.debug( "Yhat: " + str( Yhat ) )
+			
+			#obj  = util.raiseNotDefined()	### TODO: YOUR CODE HERE
+			obj = lossFn.loss( Y, Yhat ) + (lambd/2) * dot( w, w )
 
 			# return the objective
 			return obj
@@ -182,14 +188,19 @@ class LinearClassifier(BinaryClassifier):
 		# define our gradient function based on loss, lambd and (X,Y)
 		def grad(w):
 			# should compute gr = grad(w) + lambd * w
-			Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
+			#Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
+			Yhat = dot(w, X.T ) #self.predict( X.T )
+			#logging.debug( Yhat )
 
-			gr   = util.raiseNotDefined()	### TODO: YOUR CODE HERE
-
+			#logging.debug( w )
+			#gr   = util.raiseNotDefined()	### TODO: YOUR CODE HERE
+			gr = lossFn.lossGradient( X, Y, Yhat ) + lambd * dot( w, ones( len( w ) ) )
+			
 			return gr
 
 		# run gradient descent; our initial point will just be our
 		# weight vector
+		# pdb.set_trace()
 		w, trajectory = gd(func, grad, self.weights, numIter, stepSize)
 
 		# store the weights and trajectory
@@ -197,9 +208,15 @@ class LinearClassifier(BinaryClassifier):
 		self.trajectory = trajectory
 
 if __name__=='__main__':
+	import runClassifier, datasets
+	
 	# for debugging
 	import logging
 	logging.basicConfig( level=logging.DEBUG )
-	import pdb; pdb.set_trace()
+	import pdb; 
 	
+	h = LinearClassifier( { 'lossFunction': SquaredLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5 } )
+	runClassifier.trainTestSet( h, datasets.TwoDAxisAligned )
+	
+	logging.debug( h )
 	
