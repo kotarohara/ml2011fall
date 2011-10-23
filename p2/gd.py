@@ -37,8 +37,7 @@ def gd(func, grad, x0, numIter, stepSize):
 		# compute the gradient at the current location
 		#g = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 		g = array( grad( x ) )
-		print x
-		print g
+		
 		# compute the step size
 		#eta = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 		eta = stepSize / sqrt( iter + 1 )
@@ -46,10 +45,10 @@ def gd(func, grad, x0, numIter, stepSize):
 		# step in the direction of the gradient
 		#x = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 		x = x - eta * g
-
+		
 		# record the trajectory
 		trajectory[iter+1] = func(x)
-
+	
 	# return the solution
 	return (x, trajectory)
 

@@ -168,20 +168,17 @@ class LinearClassifier(BinaryClassifier):
 		numIter  = self.opts['numIter']			  # how many iterations of gd to run
 		stepSize = self.opts['stepSize']			 # what should be our GD step size?
 
-		self.weights = zeros( 2 )
-		#pdb.set_trace()
+		self.weights = zeros( len( X[0] ) )
 		# define our objective function based on loss, lambd and (X,Y)
 		def func(w):
 			# should compute obj = loss(w) + (lambd/2) * norm(w)^2
 			# Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
-			#pdb.set_trace()
-			Yhat = dot(w, X.T ) #self.predict( X.T )	# Yhat for each example
+			Yhat = dot( w, X.T )
 			
 			#logging.debug( "Yhat: " + str( Yhat ) )
 			
 			#obj  = util.raiseNotDefined()	### TODO: YOUR CODE HERE
-			obj = lossFn.loss( Y, Yhat ) + (lambd/2) * dot( w, w )
-
+			obj = lossFn.loss( Y, Yhat ) + (lambd/2) * pow(norm(w), 2)
 			# return the objective
 			return obj
 
@@ -189,13 +186,14 @@ class LinearClassifier(BinaryClassifier):
 		def grad(w):
 			# should compute gr = grad(w) + lambd * w
 			#Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
-			Yhat = dot(w, X.T ) #self.predict( X.T )
+			Yhat = dot( w, X.T ) 
 			#logging.debug( Yhat )
 
 			#logging.debug( w )
 			#gr   = util.raiseNotDefined()	### TODO: YOUR CODE HERE
-			gr = lossFn.lossGradient( X, Y, Yhat ) + lambd * dot( w, ones( len( w ) ) )
-			
+			gr = lossFn.lossGradient( X, Y, Yhat ) + lambd * w
+			#gr = gr / linalg.norm( gr, ord=1 ) # normalize gradient
+
 			return gr
 
 		# run gradient descent; our initial point will just be our
@@ -215,7 +213,7 @@ if __name__=='__main__':
 	logging.basicConfig( level=logging.DEBUG )
 	import pdb; 
 	
-	h = LinearClassifier( { 'lossFunction': SquaredLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5 } )
+	h = LinearClassifier( { 'lossFunction': SquaredLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5 } )
 	runClassifier.trainTestSet( h, datasets.TwoDAxisAligned )
 	
 	logging.debug( h )
