@@ -90,7 +90,8 @@ class HingeLoss(LossFunction):
 		"""
 
 		### TODO: YOUR CODE HERE
-		util.raiseNotDefined()
+		#util.raiseNotDefined()
+		return max( array( [0, sum( 1-Y*Yhat )] ) )
 
 	def lossGradient(self, X, Y, Yhat):
 		"""
@@ -100,8 +101,11 @@ class HingeLoss(LossFunction):
 		"""
 
 		### TODO: YOUR CODE HERE
-		util.raiseNotDefined()
+		#util.raiseNotDefined()
 
+		Y[ Y*Yhat > 1 ] = 0
+		gr = sum( Y * X.T, axis=1 )
+		return gr
 
 class LinearClassifier(BinaryClassifier):
 	"""
@@ -212,8 +216,8 @@ if __name__=='__main__':
 	logging.basicConfig( level=logging.DEBUG )
 	import pdb; 
 	
-	h = LinearClassifier( { 'lossFunction': LogisticLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5 } )
+	h = LinearClassifier( { 'lossFunction': HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5 } )
 	runClassifier.trainTestSet( h, datasets.TwoDAxisAligned )
 	
-	logging.debug( h )
+	# logging.debug( h )
 	
