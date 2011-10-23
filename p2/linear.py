@@ -63,8 +63,8 @@ class LogisticLoss(LossFunction):
 		"""
 
 		### TODO: YOUR CODE HERE
-		util.raiseNotDefined()
-
+		#util.raiseNotDefined()
+		return (1/log(2)) * sum( log( 1 + exp(-(Y * Yhat)) ) )
 
 	def lossGradient(self, X, Y, Yhat):
 		"""
@@ -74,8 +74,9 @@ class LogisticLoss(LossFunction):
 		"""
 
 		### TODO: YOUR CODE HERE
-		util.raiseNotDefined()
-
+		#util.raiseNotDefined()
+		#print Y / ( log(2) * exp( Y * Yhat ) ) * X.T
+		return sum( - Y / log(2) * ( 1 / (1 + exp( Y * Yhat ) ) ) * X.T, axis=1 )
 
 class HingeLoss(LossFunction):
 	"""
@@ -187,13 +188,11 @@ class LinearClassifier(BinaryClassifier):
 			# should compute gr = grad(w) + lambd * w
 			#Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 			Yhat = dot( w, X.T ) 
-			#logging.debug( Yhat )
 
 			#logging.debug( w )
 			#gr   = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 			gr = lossFn.lossGradient( X, Y, Yhat ) + lambd * w
-			#gr = gr / linalg.norm( gr, ord=1 ) # normalize gradient
-
+			
 			return gr
 
 		# run gradient descent; our initial point will just be our
@@ -213,7 +212,7 @@ if __name__=='__main__':
 	logging.basicConfig( level=logging.DEBUG )
 	import pdb; 
 	
-	h = LinearClassifier( { 'lossFunction': SquaredLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5 } )
+	h = LinearClassifier( { 'lossFunction': LogisticLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5 } )
 	runClassifier.trainTestSet( h, datasets.TwoDAxisAligned )
 	
 	logging.debug( h )
