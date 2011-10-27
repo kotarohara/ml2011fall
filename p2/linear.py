@@ -91,6 +91,7 @@ class HingeLoss(LossFunction):
 
 		### TODO: YOUR CODE HERE
 		#util.raiseNotDefined()
+
 		return max( array( [0, sum( 1-Y*Yhat )] ) )
 
 	def lossGradient(self, X, Y, Yhat):
@@ -102,9 +103,13 @@ class HingeLoss(LossFunction):
 
 		### TODO: YOUR CODE HERE
 		#util.raiseNotDefined()
+		gr_mat = Y * X.T
+		for i in range( len(gr_mat) ):
+			gr_mat[i][ Y*Yhat > 1 ] = 0
 
-		Y[ Y*Yhat > 1 ] = 0
-		gr = sum( Y * X.T, axis=1 )
+		gr_mat = - gr_mat
+		gr = sum( gr_mat, axis=1 )
+		
 		return gr
 
 class LinearClassifier(BinaryClassifier):
@@ -180,11 +185,10 @@ class LinearClassifier(BinaryClassifier):
 			# Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 			Yhat = dot( w, X.T )
 			
-			#logging.debug( "Yhat: " + str( Yhat ) )
-			
 			#obj  = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 			obj = lossFn.loss( Y, Yhat ) + (lambd/2) * pow(norm(w), 2)
 			# return the objective
+
 			return obj
 
 		# define our gradient function based on loss, lambd and (X,Y)
@@ -193,7 +197,7 @@ class LinearClassifier(BinaryClassifier):
 			#Yhat = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 			Yhat = dot( w, X.T ) 
 
-			#logging.debug( w )
+			#debug( w )
 			#gr   = util.raiseNotDefined()	### TODO: YOUR CODE HERE
 			gr = lossFn.lossGradient( X, Y, Yhat ) + lambd * w
 			
@@ -212,12 +216,12 @@ if __name__=='__main__':
 	import runClassifier, datasets
 	
 	# for debugging
-	import logging
-	logging.basicConfig( level=logging.DEBUG )
-	import pdb; 
+	import pdb
+	from logging import *
+	basicConfig( level=DEBUG )
 	
 	h = LinearClassifier( { 'lossFunction': HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5 } )
 	runClassifier.trainTestSet( h, datasets.TwoDAxisAligned )
 	
-	# logging.debug( h )
+	
 	
