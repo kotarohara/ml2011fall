@@ -121,16 +121,26 @@ def stackTrain( layerNum, initExampleFile="temp/example.tr.1", vertTableFileIn="
 		predictionFileOut = predictionFile + "." + str( layerNum )
 		
 		# generate a training file
-		generateExampleFile( vertTableFileIn, edgeTableFileIn, initExampleFile, predictionFileIn, exampleFileOut )
-		prevReader = open( prevExampleFileIn, "r" )
-		currReader = open( exampleFileOut, "r" )
-		temp = 	prevReader.read()
-		temp += currReader.read()
-		prevReader.close()
-		currReader.close()
-		currWriter = open( exampleFileOut, "w" )
-		currWriter.write( temp )
-		currWriter.close()
+		generateExampleFile( vertTableFileIn, edgeTableFileIn, exampleFileIn, predictionFileIn, exampleFileOut )
+		
+		# add all previous lables
+		i = layerNum - 2
+		while i >= 1:
+			predictionFileIn = 	predictionFile + "." + str( layerNum - i )
+			generateExampleFile( vertTableFileIn, edgeTableFileIn, exampleFileOut, predictionFileIn, exampleFileOut )
+			i -= 1
+		
+		### Accumulating previous layer's examples	
+		# prevReader = open( prevExampleFileIn, "r" )
+		# currReader = open( exampleFileOut, "r" )
+		# temp = 	prevReader.read()
+		# temp += currReader.read()
+		# prevReader.close()
+		# currReader.close()
+		# currWriter = open( exampleFileOut, "w" )
+		# currWriter.write( temp )
+		# currWriter.close()
+		
 		# use a training file that was made in previous lines.
 		# train and make a classifier ( weight file )
 		train( exampleFileOut, weightFileOut )
