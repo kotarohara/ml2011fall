@@ -15,6 +15,48 @@ def main():
 	# berNonImplicitize( "citeseer/citeseer.content", "citeseer/citeseer.nber.table", "citeseer/citeseer.vert" )
 	# cleanEdges( "citeseer/citeseer.cites", "citeseer/citeseer.vert", "citeseer/citeseer.edge" )
 	# joinBerEdge( "citeseer/citeseer.ber", "citeseer/citeseer.edge", "citeseer/citeseer.data" )
+	# init_clean()
+	undirectEdge()
+	return
+
+def undirectEdge():
+	fi = open( "citeseer/citeseer.edge", "r" )
+	fo = open( "citeseer/citeseer.undir", "w")
+	source_list = []
+	edges = {}
+	for line in fi:
+ 		nodes = line.strip().split()
+		source = nodes[0]
+		source_list.append( source ) # for sorting later
+		
+		if not source in edges:
+			edges[ source ] = []
+
+		for target in nodes[1:]:
+			edges[ source ].append( target )
+			
+			if not target in edges:
+				edges[ target ] = []
+			if not source in edges[ target ]:
+				edges[ target ].append( source )
+	
+	for source in source_list:
+		fo.write( source + " " + " ".join( edges[ source ] ) + "\n" )
+	
+	fi.close()
+	fo.close()
+	return 
+
+def init_clean():
+	fi = open( "temp/citeseer.pred.tr", "r" )
+	fo = open( "temp/citeseer.pred.tr.0", "w" )
+	for line in fi:
+		items = line.split()
+		fo.write( items[0] + " " + str( 0 ) + "\n" )
+	
+	fi.close()
+	fo.close()
+		
 	return
 
 def label2LabelVal( labelIn ):

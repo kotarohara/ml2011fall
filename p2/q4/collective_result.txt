@@ -1,0 +1,407 @@
+Result from running collective.py
+I'll clean this up tomorrow and do a write up. 
+
+--- CROSS VALIDATION:  1
+Training 1 th layer Training file: temp/example.tr.1
+done
+Error rate = 354 / 2650 = 0.133585
+
+Training 2 th layer Training file: temp/example.tr.2
+done
+Error rate = 693 / 5300 = 0.130755
+
+Training 3 th layer Training file: temp/example.tr.3
+done
+Error rate = 1021 / 7950 = 0.128428
+
+Training 4 th layer Training file: temp/example.tr.4
+done
+Error rate = 0 / 10600 = 0
+
+Training 5 th layer Training file: temp/example.tr.5
+done
+Error rate = 0 / 13250 = 0
+
+Training 6 th layer Training file: temp/example.tr.6
+done
+Error rate = 605 / 15900 = 0.0380503
+
+Training 7 th layer Training file: temp/example.tr.7
+done
+Error rate = 1654 / 18550 = 0.0891644
+
+Training 8 th layer Training file: temp/example.tr.8
+done
+Error rate = 1901 / 21200 = 0.0896698
+
+Training 9 th layer Training file: temp/example.tr.9
+done
+Error rate = 24 / 23850 = 0.00100629
+
+Training 10 th layer Training file: temp/example.tr.10
+done
+Error rate = 860 / 26500 = 0.0324528
+
+Testing 1 th layer
+done
+Error rate = 174 / 662 = 0.26284
+
+Testing 2 th layer
+done
+Error rate = 176 / 662 = 0.265861
+
+Testing 3 th layer
+done
+Error rate = 176 / 662 = 0.265861
+
+Testing 4 th layer
+done
+Error rate = 186 / 662 = 0.280967
+
+Testing 5 th layer
+done
+Error rate = 185 / 662 = 0.279456
+
+Testing 6 th layer
+done
+Error rate = 194 / 662 = 0.293051
+
+Testing 7 th layer
+done
+Error rate = 200 / 662 = 0.302115
+
+Testing 8 th layer
+done
+Error rate = 201 / 662 = 0.303625
+
+Testing 9 th layer
+done
+Error rate = 179 / 662 = 0.270393
+
+Testing 10 th layer
+done
+Error rate = 205 / 662 = 0.309668
+
+--- CROSS VALIDATION:  2
+Training 1 th layer Training file: temp/example.tr.1
+done
+Error rate = 165 / 2650 = 0.0622642
+
+Training 2 th layer Training file: temp/example.tr.2
+done
+Error rate = 0 / 5300 = 0
+
+Training 3 th layer Training file: temp/example.tr.3
+done
+Error rate = 2 / 7950 = 0.000251572
+
+Training 4 th layer Training file: temp/example.tr.4
+done
+Error rate = 259 / 10600 = 0.024434
+
+Training 5 th layer Training file: temp/example.tr.5
+done
+Error rate = 132 / 13250 = 0.00996226
+
+Training 6 th layer Training file: temp/example.tr.6
+done
+Error rate = 0 / 15900 = 0
+
+Training 7 th layer Training file: temp/example.tr.7
+done
+Error rate = 519 / 18550 = 0.0279784
+
+Training 8 th layer Training file: temp/example.tr.8
+done
+Error rate = 614 / 21200 = 0.0289623
+
+Training 9 th layer Training file: temp/example.tr.9
+done
+Error rate = 791 / 23850 = 0.0331656
+
+Training 10 th layer Training file: temp/example.tr.10
+done
+Error rate = 888 / 26500 = 0.0335094
+
+Testing 1 th layer
+done
+Error rate = 172 / 662 = 0.259819
+
+Testing 2 th layer
+done
+Error rate = 181 / 662 = 0.273414
+
+Testing 3 th layer
+done
+Error rate = 187 / 662 = 0.282477
+
+Testing 4 th layer
+done
+Error rate = 184 / 662 = 0.277946
+
+Testing 5 th layer
+done
+Error rate = 184 / 662 = 0.277946
+
+Testing 6 th layer
+done
+Error rate = 189 / 662 = 0.285498
+
+Testing 7 th layer
+done
+Error rate = 180 / 662 = 0.271903
+
+Testing 8 th layer
+done
+Error rate = 179 / 662 = 0.270393
+
+Testing 9 th layer
+done
+Error rate = 180 / 662 = 0.271903
+
+Testing 10 th layer
+done
+Error rate = 181 / 662 = 0.273414
+
+--- CROSS VALIDATION:  3
+Training 1 th layer Training file: temp/example.tr.1
+done
+Error rate = 3 / 2650 = 0.00113208
+
+Training 2 th layer Training file: temp/example.tr.2
+done
+Error rate = 25 / 5300 = 0.00471698
+
+Training 3 th layer Training file: temp/example.tr.3
+done
+Error rate = 439 / 7950 = 0.0552201
+
+Training 4 th layer Training file: temp/example.tr.4
+done
+Error rate = 5 / 10600 = 0.000471698
+
+Training 5 th layer Training file: temp/example.tr.5
+done
+Error rate = 401 / 13250 = 0.0302642
+
+Training 6 th layer Training file: temp/example.tr.6
+done
+Error rate = 237 / 15900 = 0.0149057
+
+Training 7 th layer Training file: temp/example.tr.7
+done
+Error rate = 396 / 18550 = 0.0213477
+
+Training 8 th layer Training file: temp/example.tr.8
+done
+Error rate = 10 / 21200 = 0.000471698
+
+Training 9 th layer Training file: temp/example.tr.9
+done
+Error rate = 528 / 23850 = 0.0221384
+
+Training 10 th layer Training file: temp/example.tr.10
+done
+Error rate = 559 / 26500 = 0.0210943
+
+Testing 1 th layer
+done
+Error rate = 193 / 662 = 0.291541
+
+Testing 2 th layer
+done
+Error rate = 198 / 662 = 0.299094
+
+Testing 3 th layer
+done
+Error rate = 180 / 662 = 0.271903
+
+Testing 4 th layer
+done
+Error rate = 199 / 662 = 0.300604
+
+Testing 5 th layer
+done
+Error rate = 197 / 662 = 0.297583
+
+Testing 6 th layer
+done
+Error rate = 197 / 662 = 0.297583
+
+Testing 7 th layer
+done
+Error rate = 196 / 662 = 0.296073
+
+Testing 8 th layer
+done
+Error rate = 199 / 662 = 0.300604
+
+Testing 9 th layer
+done
+Error rate = 196 / 662 = 0.296073
+
+Testing 10 th layer
+done
+Error rate = 198 / 662 = 0.299094
+
+--- CROSS VALIDATION:  4
+Training 1 th layer Training file: temp/example.tr.1
+done
+Error rate = 482 / 2650 = 0.181887
+
+Training 2 th layer Training file: temp/example.tr.2
+done
+Error rate = 3 / 5300 = 0.000566038
+
+Training 3 th layer Training file: temp/example.tr.3
+done
+Error rate = 4 / 7950 = 0.000503145
+
+Training 4 th layer Training file: temp/example.tr.4
+done
+Error rate = 5 / 10600 = 0.000471698
+
+Training 5 th layer Training file: temp/example.tr.5
+done
+Error rate = 78 / 13250 = 0.00588679
+
+Training 6 th layer Training file: temp/example.tr.6
+done
+Error rate = 7 / 15900 = 0.000440252
+
+Training 7 th layer Training file: temp/example.tr.7
+done
+Error rate = 9 / 18550 = 0.000485175
+
+Training 8 th layer Training file: temp/example.tr.8
+done
+Error rate = 179 / 21200 = 0.0084434
+
+Training 9 th layer Training file: temp/example.tr.9
+done
+Error rate = 49 / 23850 = 0.00205451
+
+Training 10 th layer Training file: temp/example.tr.10
+done
+Error rate = 320 / 26500 = 0.0120755
+
+Testing 1 th layer
+done
+Error rate = 212 / 662 = 0.320242
+
+Testing 2 th layer
+done
+Error rate = 209 / 662 = 0.31571
+
+Testing 3 th layer
+done
+Error rate = 209 / 662 = 0.31571
+
+Testing 4 th layer
+done
+Error rate = 214 / 662 = 0.323263
+
+Testing 5 th layer
+done
+Error rate = 222 / 662 = 0.335347
+
+Testing 6 th layer
+done
+Error rate = 213 / 662 = 0.321752
+
+Testing 7 th layer
+done
+Error rate = 213 / 662 = 0.321752
+
+Testing 8 th layer
+done
+Error rate = 221 / 662 = 0.333837
+
+Testing 9 th layer
+done
+Error rate = 216 / 662 = 0.326284
+
+Testing 10 th layer
+done
+Error rate = 223 / 662 = 0.336858
+
+--- CROSS VALIDATION:  5
+Training 1 th layer Training file: temp/example.tr.1
+done
+Error rate = 469 / 2650 = 0.176981
+
+Training 2 th layer Training file: temp/example.tr.2
+done
+Error rate = 3 / 5300 = 0.000566038
+
+Training 3 th layer Training file: temp/example.tr.3
+done
+Error rate = 4 / 7950 = 0.000503145
+
+Training 4 th layer Training file: temp/example.tr.4
+done
+Error rate = 5 / 10600 = 0.000471698
+
+Training 5 th layer Training file: temp/example.tr.5
+done
+Error rate = 580 / 13250 = 0.0437736
+
+Training 6 th layer Training file: temp/example.tr.6
+done
+Error rate = 89 / 15900 = 0.00559748
+
+Training 7 th layer Training file: temp/example.tr.7
+done
+Error rate = 17 / 18550 = 0.000916442
+
+Training 8 th layer Training file: temp/example.tr.8
+done
+Error rate = 364 / 21200 = 0.0171698
+
+Training 9 th layer Training file: temp/example.tr.9
+done
+Error rate = 624 / 23850 = 0.0261635
+
+Training 10 th layer Training file: temp/example.tr.10
+done
+Error rate = 710 / 26500 = 0.0267925
+
+Testing 1 th layer
+done
+Error rate = 235 / 662 = 0.354985
+
+Testing 2 th layer
+done
+Error rate = 248 / 662 = 0.374622
+
+Testing 3 th layer
+done
+Error rate = 246 / 662 = 0.371601
+
+Testing 4 th layer
+done
+Error rate = 248 / 662 = 0.374622
+
+Testing 5 th layer
+done
+Error rate = 238 / 662 = 0.359517
+
+Testing 6 th layer
+done
+Error rate = 235 / 662 = 0.354985
+
+Testing 7 th layer
+done
+Error rate = 240 / 662 = 0.362538
+
+Testing 8 th layer
+done
+Error rate = 230 / 662 = 0.347432
+
+Testing 9 th layer
+done
+Error rate = 233 / 662 = 0.351964
+
+Testing 10 th layer
+done
+Error rate = 235 / 662 = 0.354985
