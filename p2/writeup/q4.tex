@@ -4,12 +4,12 @@ We decided to work on collective classification. We use a CiteSeer dataset share
 
 We implement a stacking algorithm that is described at the end of the chapter 5 of the textbook (Algorithms 20 and 21.) We implement two flavors of the stacking algorithm (to see which one performs better):
 \begin{itemize}
-	\item Simple. This implementation will only use predictions on neighbors from a previous layer. (Neighbors are examples cites/are cited by the example)
-	\item Cumulative. This implementation will take all the predictions on neighbors until the Kth layer $(y_1, ..., y_{k-1})$ to train the Kth layer's classifier.
+	\item Simple. This implementation will only use predictions on neighbors from a previous layer. (Neighbors are examples that cites/are cited by the example that we are focusing on)
+	\item Cumulative. This implementation will take all the predictions on neighbors until the Kth layer $(\vec y_1, ..., \vec y_{k-1})$ to train the Kth layer's classifier.
 \end{itemize}
-On the first layer, we simply use Megam in our script to train a multi-class classifier. Output (predictions) from Megam is parsed and stored inside prediction data. On each of succeeding layers, we first generate training data by combining an original training data (training data from the first layer) and predictions from a previous layer. I.e. we append predicted labels of neighbors into the training example as features. Then we train a classifier for the layer using Megam.
+On the first layer, we simply use Megam in our script to train a multi-class classifier. Output (predictions) from Megam is parsed and stored inside prediction data. On each of succeeding layers, we first generate training data by combining an original training data (training data from the first layer) and predictions from a previous layer. I.e. we append predicted labels of neighbors into the training example as features. Then we train a classifier for the layer.
 
-We split the dataset into five parts for cross-validation and calculate a training error and a test error for each layer. For each validation, we train classifiers with 2650 examples and test with 662 examples. 
+We split the dataset into five parts for cross-validation and calculate training errors and test errors for each layer. For each validation, we train classifiers with 2650 examples and test with 662 examples. 
 
 Figures show training errors and testing errors against layer indexes. On the first layer of the simple implementation, training error was about 11\%. The classifier is trained only with word features. On the second layer, the error went up to 13\% as we append predictions from the first layer into the training dataset. For the rest of the layers, training error did not change from 13\%. 
 
