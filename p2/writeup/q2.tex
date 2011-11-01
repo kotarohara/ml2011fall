@@ -80,8 +80,8 @@ With a depth 10 tree, there is a test error of $20.5\%$, a slight improvement ov
 
 
 \section{WU7}
-All three of the algorithms gets an error rate of $7\%$ on the digit recognition using the default values provided in the project description. For the text categorization task, megam performs the best using the default values, with an error rate of $17.7\%$
+All three of the algorithms gets an error rate of $7\%$ on the digit recognition using the default hyperparameter values provided in the project description. For the text categorization task, megam performs the best using the default hyperparameter values, with an error rate of $17.7\%$
 
-Something about maximum entropy models makes megam perform best in the text categorization task...
+Megam and libsvm perform better than FastDT. This is because with a DT of maxdepth = 3, we are only looking at a small number of features (in this case, words), when the text categorization task involves looking at the word counts. On the other hand, megam and libsvm are able to predict by looking at all the input data.
 
 
