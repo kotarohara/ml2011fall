@@ -1,51 +1,64 @@
 \section{WU4}
     \textbf{Highest weights}
     \begin{itemize}
-        \item 'graphics': 1.09266018867492675781
-        \item 'images': 0.72071808576583862305
-        \item 'image': 0.72011238336563110352
-        \item 'card': 0.71161371469497680664
-        \item 'xx': 0.69300860166549682617
+        \item ``graphics'': 1.09266018867492675781
+        \item ``images'': 0.72071808576583862305
+        \item ``image'': 0.72011238336563110352
+        \item ``card'': 0.71161371469497680664
+        \item ``xx'': 0.69300860166549682617
     \end{itemize}
 
     \textbf{Lowest weights}
     \begin{itemize}
-        \item 'motif': -1.21472561359405517578
-        \item 'window': -1.15353131294250488281
-        \item 'server': -0.95007282495498657227
-        \item 'list': -0.88857728242874145508
-        \item 'x': 0.86317312717437744141
+        \item ``motif'': -1.21472561359405517578
+        \item ``window'': -1.15353131294250488281
+        \item ``server'': -0.95007282495498657227
+        \item ``list'': -0.88857728242874145508
+        \item ``x'': 0.86317312717437744141
     \end{itemize}
 
-    These seem pretty "right". We see that some graphics-related words (graphics, images, image) are highly weighted, and words you might see in the windows list (window, server, list) are lowly weighted. It is interesting, however, that 'x' and 'xx' are on the opposite sides of the weights - maybe this is some type of notation that the newsgroups use for some purpose. Also strange is the appearance of ``motif'' as the lowest weight.
+    These seem pretty ``right''. We see that some graphics-related words (graphics, images, image) are highly weighted, and words you might see in the windows list (window, server, list) are lowly weighted. It is interesting, however, that ``x'' and ``xx" are on the opposite sides of the weights - maybe this is some type of notation that the newsgroups use for some purpose. Also strange is the appearance of ``motif'' as the lowest weight.
 \section{WU5}
-TODO convert this tree to something
 1
-1
+
 N x
+
 N graphics
+
 N usr
+
 L 0 9
+
 L 45 29
+
 N vga
+
 L 13 0
+
 L 67 328
+
 N window
+
 N be
+
 L 1 44
+
 L 8 20
+
 N motif
+
 L 1 29
+
 L 449 134
 
-Here we see some of the same features as compared to the linear regression model, including 'graphics', 'window', 'x', and 'motif'. There are some new features here, 'vga', 'usr', and 'be'.
+Here we see some of the same features as compared to the linear regression model, including ``graphics'', ``window'', ``x'', and ``motif''. There are some new features however, ``vga'', ``usr'', and ``be''. I can see ``vga'' and ``usr'' being useful, but ``be'' is confusing - perhaps it is something that is used an abbreviation in one of the newsgroups.
 
 With a depth 10 tree, there is a test error of $20.5\%$, a slight improvement over the tree of depth 3.
 
 \section{WU6}
-    With FastDT, we expected overfitting as the maxdepth increased. 
+    With FastDT, we expected overfitting as the maxdepth increased. With megam, we expected that very small lambda values would perform worse than larger ones. To be honest, we were unsure what to expect with the C values. 
 
-    Figure \ref{fig:megam} shows the megam error rate. Figure \ref{fig:fastdt} shows the FastDT error rate. As expected, FastDT overfits as the maxdepth parameter increases. Figure \ref{fig:libsvm} shows the libsvm error rate. There was actually hardly any variation in the error rates with different lambda values.
+    Figure \ref{fig:megam} shows the megam error rate, which basically agrees with our hypothesis - the small values perform worse than the larger lambda values, with an increase in error rate if the lambda values get too big. Figure \ref{fig:fastdt} shows the FastDT error rate. As expected, FastDT overfits as the maxdepth parameter increases. Figure \ref{fig:libsvm} shows the libsvm error rate. There was actually hardly any variation in the error rates with different lambda values.
 
     \begin{figure}
 	    \caption{Plot of megam error rate with various lambda values}
@@ -60,7 +73,7 @@ With a depth 10 tree, there is a test error of $20.5\%$, a slight improvement ov
     \end{figure}
 
     \begin{figure}
-	    \caption{Plot of libsvm error rate with various lambda values}
+	    \caption{Plot of libsvm error rate with various C values}
 	    \label{fig:libsvm}
 	    \includegraphics[width=6in]{images/wu6_libsvm.png}
     \end{figure}
@@ -69,6 +82,6 @@ With a depth 10 tree, there is a test error of $20.5\%$, a slight improvement ov
 \section{WU7}
 All three of the algorithms gets an error rate of $7\%$ on the digit recognition using the default values provided in the project description. For the text categorization task, megam performs the best using the default values, with an error rate of $17.7\%$
 
-WHY!?!??!?!?
+Something about maximum entropy models makes megam perform best in the text categorization task...
 
 
