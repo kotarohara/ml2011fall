@@ -38,12 +38,15 @@ def viterbi(X, a, b, pi):
     # loop for time
     for t in range(1,T+1):
         for k in range(K):
-            ### TODO: YOUR CODE HERE
-            util.raiseNotDefined()
-            al[k,t] = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
-            ze[k,t] = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
+            backpointer = 0
+            alpha = -inf
+            for previous in range(K):
+                temp = al[previous,t-1] + log(a[previous,k]) + log(b[previous,X[t-1]])
+                if temp>alpha :
+                    alpha = temp
+                    backpointer = previous
+            al[k,t] = alpha
+            ze[k,t] = backpointer
 
     print al
     print ze
@@ -52,13 +55,17 @@ def viterbi(X, a, b, pi):
     path = zeros((T,), dtype=int) - 1
 
     # initialize at end
-    path[T-1] = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
-
+    temp = -inf
+    state = 0
+    for k in range(K) :
+        if al[k,T] > temp :
+            state = ze[k,T]
+            temp = al[k,T]
+    path[T-1] = state
+    
     # recurse backward
     for t in range(T-1,0,-1):
-        path[t-1] = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
+        path[t-1] = ze[path[t],t]
 
     return path
 
@@ -100,15 +107,15 @@ def forward(X, a, b, pi):
 
     # initialize for t=0
     for k in range(K):
-        al[k,0] = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+        al[k,0] = log(pi[k])
 
 
     # loop for time
     for t in range(1,T+1):
         for k in range(K):
             val = -inf
-            ### TODO: YOUR CODE HERE
-            util.raiseNotDefined()
+            for previous in range(K) :
+               val = addLog(val, al[previous,t-1] + log(a[previous,k]) + log(b[previous,X[t-1]]))
             al[k,t] = val
 
     return al
@@ -140,8 +147,8 @@ def backward(X, a, b, pi):
     for t in range(T-1, -1, -1):
         for k in range(K):
             val = -inf
-            ### TODO: YOUR CODE HERE
-            util.raiseNotDefined()
+            for previous in range(K) :
+               val = addLog(val, be[previous,t+1] + log(a[k,previous]) + log(b[k,X[t]]))
             be[k,t] = val
 
     return be
@@ -169,19 +176,18 @@ def reestimate(X, al, be, aold, bold, piold):
 
     # re-estimate start states (pi):
     for k in range(K):
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        pi[k] = al[k,0] + be[k,0]
 
     # re-estimate emissions (b):
-    for k in range(K):
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+    for t in range(0,T):
+        for k in range(K):
+            b[k,X[t]] = addLog(b[k,X[t]], al[k,t] + be[k,t])
 
     # re-estimate transitions (a):
-    for k in range(K):
-        for k_next in range(K):
-            ### TODO: YOUR CODE HERE
-            util.raiseNotDefined()
+    for t in range(0,T):
+        for k in range(K):
+            for k_next in range(K):
+                a[k_next,k] = addLog(a[k_next,k], al[k_next,t] + log(aold[k_next,k]) + log(bold[k_next,X[t]]) + be[k, t+1])
 
     # normalize the new probabilities
     pi = normalizeLog(pi)

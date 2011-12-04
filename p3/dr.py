@@ -1,7 +1,7 @@
 from numpy import *
 from util import *
 from pylab import *
-import logging
+import logging, pdb
 import datasets
 import kernel
 
@@ -77,12 +77,15 @@ def kpca(X, K, kernel):
 	#util.raiseNotDefined()
 	N  =	X.shape[0]
 	logging.debug( X.shape )
-	KerM = 	kernel(X, X.T)
-	H = 	ones((N,N)) / N
+	
+	pdb.set_trace()
+	
+	KerM = 	kernel(X.T, X)
+	H = 	ones([N,N]) / N
 	KerC = 	KerM - dot(KerM, H) - dot(H,KerM) + dot( dot(H, KerM), H )
 	
-	logging.debug( KerC.shape[0] )
-	logging.debug( KerC )
+	#logging.debug( KerC.shape[0] )
+	#logging.debug( KerC )
 	
 	evals, evecs = eig( KerC / KerC.shape[0] )
 	evals = real( evals )
@@ -135,9 +138,9 @@ def kpcaTest():
 	#(P, alpha, evals) = kpca(X, 2, kernel.linear)
 	
 	(a, b) = datasets.makeKPCAdata()
-	#plot( a[:,0], a[:,1], 'b.', b[:,0], b[:,1], 'r.' )
+	# plot( a[:,0], a[:,1], 'b.', b[:,0], b[:,1], 'r.' )
 	x = vstack((a,b))
-	#(P,Z,evals) = pca(x,2)
+	# (P,Z,evals) = pca(x,2)
 	
 	# Pa = P[0:a.shape[0],:]
 	# Pb = P[a.shape[0]:-1,:]
