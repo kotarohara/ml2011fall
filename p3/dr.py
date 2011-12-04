@@ -75,28 +75,33 @@ def kpca(X, K, kernel):
 
 	### TODO: YOUR CODE HERE
 	#util.raiseNotDefined()
-	N  =	X.shape[0]
-	logging.debug( X.shape )
+	N, D  =	X.shape
 	
-	pdb.set_trace()
+	# Ker0: Kernel Matrix 0
+	# KerC: Kernel Matrix Centered
+	# KerM: Kernel Matrix
+	Z = X.copy()
+	Ker0 = zeros((N,N))
+	for i, x in enumerate( X ):
+		for j, z in enumerate( Z ):
+			Ker0[i,j] = kernel(x,z)
+	# Ker0 = kernel( X, X.T )
+	H = 	ones((N,N)) / N
+	KerC = 	Ker0 - dot(H, Ker0) - dot(Ker0, H) + dot( dot(H, Ker0), H )
 	
-	KerM = 	kernel(X.T, X)
-	H = 	ones([N,N]) / N
-	KerC = 	KerM - dot(KerM, H) - dot(H,KerM) + dot( dot(H, KerM), H )
-	
-	#logging.debug( KerC.shape[0] )
-	#logging.debug( KerC )
-	
-	evals, evecs = eig( KerC / KerC.shape[0] )
-	evals = real( evals )
-	evecs = real( evecs ) / evals
+	evals, evecs = eig( KerC )
+	evals = real( evals ) / N
+
+	evecs = real( evecs ) # / sqrt( evals )
 	eorder = argsort( evals )[::-1][:K]
 	
-	evals = evals[ eorder ][:K]
-	alpha = evecs[ eorder ][:K]
-	P = dot( KerC, alpha.T )
-
-	return (P, alpha, evals)
+	evals = evals[ eorder ]
+	alpha = evecs[ eorder ]
+	
+	a_norm = divide(alpha.T, sum(alpha, axis=1) ).T
+	a_norm = divide( a_norm.T, sqrt( evals ) ).T
+	P = dot( KerC, a_norm.T )
+	return (P, alpha, evals )
 
 def pcaTest():
 	"""
@@ -129,33 +134,47 @@ def pcaTest():
 	return
 
 def kpcaTest():
+	import numpy
+	numpy.random.seed(2780)
 	Si = sqrtm(array([[3,2],[2,4]]))
-	X = dot( randn(1000,2), Si)
+	#x = dot( randn(1000,2), Si)
+	#(P, alpha, evals) = kpca(x,2,kernel.linear)
+	#print "P", P
+	#print
+	#print "alpha", alpha
+	#print
+	#print "evals", evals
+	(a,b) = datasets.makeKPCAdata()
+	x = vstack((a,b))
+	(P, Z, evals) = kpca(x, 2, kernel.rbf1)
 	
+	print "P"
+	print P
+
 	#logging.debug( "Si:\n" + str(Si) + "\n" )
 	#logging.debug( "X:\n" + str(X)) + "\n" )
 	
 	#(P, alpha, evals) = kpca(X, 2, kernel.linear)
 	
-	(a, b) = datasets.makeKPCAdata()
+	#(a, b) = datasets.makeKPCAdata()
 	# plot( a[:,0], a[:,1], 'b.', b[:,0], b[:,1], 'r.' )
-	x = vstack((a,b))
+	#x = vstack((a,b))
 	# (P,Z,evals) = pca(x,2)
 	
 	# Pa = P[0:a.shape[0],:]
 	# Pb = P[a.shape[0]:-1,:]
 	# plot(Pa[:,0], randn(Pa.shape[0]), 'b.', Pb[:,0], randn(Pb.shape[0]), 'r.')
-	(P, alpha, evals) = kpca(x,2,kernel.rbf1)
-	logging.debug( evals )
-	Pa = P[0:a.shape[0],:]
-	Pb = P[a.shape[0]:-1,:]
-	plot(Pa[:,0], Pa[:,1], 'b.', Pb[:,0], Pb[:,1], 'r.')
+	#(P, alpha, evals) = kpca(x,2,kernel.rbf1)
+	#logging.debug( evals )
+	#Pa = P[0:a.shape[0],:]
+	#Pb = P[a.shape[0]:-1,:]
+	#plot(Pa[:,0], Pa[:,1], 'b.', Pb[:,0], Pb[:,1], 'r.')
 	
-	logging.debug( "Z:\n" + str( Z ) + "\n" )
-	logging.debug( "evals:\n" + str( evals ) + "\n" )
-	input()
-	logging.debug( "evals:\n" + str(evals) + "\n" )
-	logging.debug( "alpha:\n" + str(alpha) + "\n" )
+	#logging.debug( "Z:\n" + str( Z ) + "\n" )
+	#logging.debug( "evals:\n" + str( evals ) + "\n" )
+	#input()
+	#logging.debug( "evals:\n" + str(evals) + "\n" )
+	#logging.debug( "alpha:\n" + str(alpha) + "\n" )
 	
 	return
 
