@@ -105,78 +105,77 @@ def kpca(X, K, kernel):
 
 def pcaTest():
 	"""
-	X = array( [
-				[1, 2, 3, 8], 
-				[4, 5, 6, 9]
-				] )
-	K = 2
-	logging.debug( "(X, K):\n" + str( (X, K) ) )
-	logging.debug( "pca:\n" + str( pca( X, K ) ) )
-	"""
-	"""
 	Si = sqrtm( array([[3,2], [2,4]]) )
 	x = dot( randn(1000, 2), Si )
 	
 	(P,Z,evals) = pca( x, 2 )
-	logging.debug( "Z: \n" + str( Z ) )
-	logging.debug( "evals: \n" + str( evals ))
+	print "Z:", Z
+	print "evals:", evals
 	x0 = dot(dot(x, Z[0,:]).reshape(1000,1), Z[0,:].reshape(1,2))
 	x1 = dot(dot(x, Z[1,:]).reshape(1000,1), Z[1,:].reshape(1,2))
 	
 	plot(x[:,0], x[:,1], 'b.', x0[:,0], x0[:,1], 'r.', x1[:,0], x1[:,1], 'g.')
 	input()
 	"""
-	(X, Y) = datasets.loadDigits()
-	(P,Z,evals) = pca( X, 784 )
-	#logging.debug( evals )
-	drawDigits(Z[1:50,:], arange(50))
+
+	#(X, Y) = datasets.loadDigits()
+	#(P,Z,evals) = pca( X, 784 )
+	
+	"""
+	esum = sum( evals )
+	print esum
+	print "evals", evals[0:3]
+	evals = evals / esum
+	print "evals", evals[0:3]
+	print "evals", evals
+	plot( evals, zeros([evals.shape[0]]), 'b.')
 	input()
+	"""
+	#print cumsum( evals )
+
+	"""acum = 0
+	for i in xrange( len( evals ) ):
+		acum = sum( evals[:i] )
+		print acum
+		if acum >= 0.90:
+			print "i:", i
+			break
+			"""
+	
+	# print Z
+	#x0 = dot(dot(X, Z[0,:]).reshape(1000,1), Z[0,:].reshape(1,2))
+	#plot(X[:,0], X[:,1], 'b.', x0[:,0], x0[:,1], 'r.')
+	#input()
+	
+	#drawDigits(Z[1:50], arange(50))
+	#input()
+	
+	(a,b) = datasets.makeKPCAdata()
+	
+	x = vstack((a,b))
+	(P,Z,evals) = pca(x,2)
+	
+	Pa = P[0:a.shape[0],:]
+	Pb = P[a.shape[0]:-1,:]
+	
+	plot(Pa[:,0], randn(Pa.shape[0]), 'b.', Pb[:,0], randn(Pb.shape[0]), 'r.')
+	input()
+	
 	return
 
 def kpcaTest():
 	import numpy
 	numpy.random.seed(2780)
 	Si = sqrtm(array([[3,2],[2,4]]))
-	#x = dot( randn(1000,2), Si)
-	#(P, alpha, evals) = kpca(x,2,kernel.linear)
-	#print "P", P
-	#print
-	#print "alpha", alpha
-	#print
-	#print "evals", evals
-	(a,b) = datasets.makeKPCAdata()
-	x = vstack((a,b))
-	(P, Z, evals) = kpca(x, 2, kernel.rbf1)
+	x = dot(randn(1000, 2), Si)
 	
-	print "P"
-	print P
+	(P, alpha, evals) = kpca(x, 2, kernel.linear)
 
-	#logging.debug( "Si:\n" + str(Si) + "\n" )
-	#logging.debug( "X:\n" + str(X)) + "\n" )
-	
-	#(P, alpha, evals) = kpca(X, 2, kernel.linear)
-	
-	#(a, b) = datasets.makeKPCAdata()
-	# plot( a[:,0], a[:,1], 'b.', b[:,0], b[:,1], 'r.' )
-	#x = vstack((a,b))
-	# (P,Z,evals) = pca(x,2)
-	
-	# Pa = P[0:a.shape[0],:]
-	# Pb = P[a.shape[0]:-1,:]
-	# plot(Pa[:,0], randn(Pa.shape[0]), 'b.', Pb[:,0], randn(Pb.shape[0]), 'r.')
-	#(P, alpha, evals) = kpca(x,2,kernel.rbf1)
-	#logging.debug( evals )
-	#Pa = P[0:a.shape[0],:]
-	#Pb = P[a.shape[0]:-1,:]
-	#plot(Pa[:,0], Pa[:,1], 'b.', Pb[:,0], Pb[:,1], 'r.')
-	
-	#logging.debug( "Z:\n" + str( Z ) + "\n" )
-	#logging.debug( "evals:\n" + str( evals ) + "\n" )
-	#input()
-	#logging.debug( "evals:\n" + str(evals) + "\n" )
-	#logging.debug( "alpha:\n" + str(alpha) + "\n" )
+	print "evals", evals
+	print "alpha", alpha
 	
 	return
 
 if __name__=="__main__":
-	kpcaTest()
+	pcaTest()
+	#kpcaTest()
