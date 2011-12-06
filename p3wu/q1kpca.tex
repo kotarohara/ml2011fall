@@ -8,7 +8,8 @@
 Figure \ref{fig:wu4} shows the plot of the data. 
 Vanilla PCA will find this data difficult because the variance in all directions is similar. This means that eigenvectors can point in any direction.
 
-Large eigenvalues means there is no correlation between any of the axis. 
+The large eigenvalues have no significance. For example, with a poly3 kernel, the eigenvalues are ridiculously 
+large due to cubing the dot product. What does hold significance, however, is the normalized eigenvalues. 
 
 \section*{WU5}
 \begin{figure}[here]
