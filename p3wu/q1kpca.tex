@@ -28,7 +28,7 @@ is not linearly separable.
 \section*{WU6}
 \begin{figure}[here]
 	\center
-	\caption{wu6}
+	\caption{wu6: Plot of data points transformed by a rbf1 kernel}
 	\label{fig:wu6}
 	\includegraphics[width=4.0in]{img/wu7_rbf1.png}
 \end{figure}
@@ -38,17 +38,27 @@ the eigenvalues for KPCA with linear kernel: [ 5.68035099  1.51738947]. This mea
 better job at making the data linearly separable than the linear kernel. See the Figure \ref{fig:wu7_rbf1} for a plot of the rbf1 kernel and Figure \ref{fig:wu7_linear} for the plot of the linear kernel for a visual comparison.
 
 \section*{WU7}
-\begin{verbatim}
-	linear: [ 6.1633096   5.75720649]
-	poly2: [ 64.10397019  62.76778803]
-	poly3: [ 2906.46175423  2477.34358423]
-	rbf0_2: [ 0.14538657  0.10079059]
-	rbf0_5: [ 0.11223664  0.06506837]
-	rbf1: [ 0.07796779  0.05559504]
-	rbf2: [ 0.05140468  0.04200365]
-	rbf5: [ 0.02830142  0.02551005]
+\begin{table}[here]
+	\centering % used for centering table
+	\begin{tabular}{l l l} % centered columns (2 columns)
+		\hline\hline %inserts double horizontal lines
+		Kernel & Top eigen values & Variance \\ [0.5ex] % inserts table
+		%heading
+		\hline % inserts single horizontal line
+		Linear & (6.163,   5.757) & (3.032E+03,  2.833E+03) \\ % inserting body of the table
+		Poly2 & (6.410E+01,  6.277E+01) & (3.154E+04,  3.088E+04) \\
+		Poly3 & (2.906E+03,  2.477E+03) & (1.429E+06,  1.219E+06) \\
+		RBF 0.2 & (1.454E-01,  1.008E-01) & (7.153.E+01,   4.959E+01) \\
+		RBF 0.5 & (1.122E-01,  6.507E-02) & (5.522E+01,  3.201E+01)\\
+		RBF 1 & (7.797E-02,  5.560E-02) & (3.836E+01,  2.735E+01)\\
+		RBF 2 & (5.140E-02,  4.200E-02) & (2.529E+01,  2.067E+01)\\
+		RBF 5 & (2.830E-02,  2.551E-02) & (1.392E+01  1.255E+01) \\ [1ex] % [1ex] adds vertical space
+		\hline %inserts single line
+	\end{tabular}
+	\label{table:convergence} % is used to refer this table in the text
+	\caption{Examples of convergence} % title of Table
+\end{table}
 
-\end{verbatim}
 Plots for the various kernels:
 \begin{itemize}
 	\item linear: Figure \ref{fig:wu7_linear}
