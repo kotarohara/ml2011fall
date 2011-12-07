@@ -40,24 +40,35 @@ better job at making the data linearly separable than the linear kernel. See the
 \section*{WU7}
 \begin{table}[here]
 	\centering % used for centering table
-	\begin{tabular}{l l l} % centered columns (2 columns)
+	\begin{tabular}{l l l l l} % centered columns (2 columns)
 		\hline\hline %inserts double horizontal lines
-		Kernel & Top eigen values & Variance \\ [0.5ex] % inserts table
+		Kernel & Top eigen values & Variance & $\lambda_0$ & $\lambda_0 + \lambda_1$  \\ [0.5ex] % inserts table
 		%heading
 		\hline % inserts single horizontal line
-		Linear & (6.163,   5.757) & (3.032E+03,  2.833E+03) \\ % inserting body of the table
-		Poly2 & (6.410E+01,  6.277E+01) & (3.154E+04,  3.088E+04) \\
-		Poly3 & (2.906E+03,  2.477E+03) & (1.429E+06,  1.219E+06) \\
-		RBF 0.2 & (1.454E-01,  1.008E-01) & (7.153.E+01,   4.959E+01) \\
-		RBF 0.5 & (1.122E-01,  6.507E-02) & (5.522E+01,  3.201E+01)\\
-		RBF 1 & (7.797E-02,  5.560E-02) & (3.836E+01,  2.735E+01)\\
-		RBF 2 & (5.140E-02,  4.200E-02) & (2.529E+01,  2.067E+01)\\
-		RBF 5 & (2.830E-02,  2.551E-02) & (1.392E+01  1.255E+01) \\ [1ex] % [1ex] adds vertical space
+		Linear & (6.163,   5.757) & (3.032E+03,  2.833E+03) & 0.517 & 1. \\ % inserting body of the table
+		Poly2 & (6.410E+01,  6.277E+01) & (3.154E+04,  3.088E+04) & 0.312 & 0.618 \\
+		Poly3 & (2.906E+03,  2.477E+03) & (1.429E+06,  1.219E+06) & 0.379 & 0.701 \\
+		RBF 0.2 & (1.454E-01,  1.008E-01) & (7.153.E+01,   4.959E+01) & 0.176 & 0.297 \\
+		RBF 0.5 & (1.122E-01,  6.507E-02) & (5.522E+01,  3.201E+01) & 0.123 & 0.194 \\
+		RBF 1 & (7.797E-02,  5.560E-02) & (3.836E+01,  2.735E+01) & 0.082 & 0.140 \\
+		RBF 2 & (5.140E-02,  4.200E-02) & (2.529E+01,  2.067E+01) & 0.053 & 0.096 \\
+		RBF 5 & (2.830E-02,  2.551E-02) & (1.392E+01  1.255E+01) & 0.029 & 0.055 \\ [1ex] % [1ex] adds vertical space
 		\hline %inserts single line
 	\end{tabular}
-	\label{table:convergence} % is used to refer this table in the text
+	\label{table:wu7} % is used to refer this table in the text
 	\caption{Examples of convergence} % title of Table
 \end{table}
+
+Table 1 shows that the linear kernel does the best job in terms of 
+getting most variance in the first two principle component. The poly2 kernel and
+the poly3 kernel also do good job in getting much of variance with the first two 
+principle component.
+However, if you look at plotted data points, none of three kernels make
+data linearly separable.
+
+On the other hand, RBF kernels make the data linearly separable. Among all RBF kernels, 
+RBF 0.2 does the best job in getting as much of the variance on the first two principle 
+component.
 
 Plots for the various kernels:
 \begin{itemize}
